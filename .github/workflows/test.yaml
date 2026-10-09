@@ -1,0 +1,18 @@
+yaml
+name: Docker Build and Test
+
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v4
+
+      - name: Build the Docker image
+        run: docker build -t my-test-app .
+
+      - name: Run tests inside the Docker container
+        run: docker run --rm my-test-app
